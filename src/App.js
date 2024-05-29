@@ -1,23 +1,70 @@
-import logo from './logo.svg';
 import './App.css';
+import { createBrowserRouter,RouterProvider } from 'react-router-dom';
+import Home from './components/home/Home';
+import Login from './components/login/Login'
+import Register from './components/register/Register'
+import AboutUs from './components/aboutus/AboutUs'
+import UserProfile from './components/user-profile/UserProfile'
+import Cart from './components/cart/Cart'
+import Products from './components/products/Products'
+import RootLayout from './components/RootLayout'
+import ErrorPage from './components/ErrorPage';
 
 function App() {
+    const routerObj=createBrowserRouter([
+      //Routing details
+      {
+        path:'/',   //path is empty
+        element:<RootLayout/>,
+        errorElement:<ErrorPage/>,
+        children:[
+          //empty
+          {
+            path:'/',
+            element:<Home/>
+          },
+          //login
+          {
+            path:'/login',
+            element:<Login/>,
+            
+          },
+          //register
+          {
+            path:'/register',
+            element:<Register/>
+          },
+          //aboutus
+          {
+            path:'/aboutus',
+            element:<AboutUs/>
+          },
+          //user-profile
+          {
+            path:'/user-profile',
+            element:<UserProfile/>,
+            children:[
+              {
+                //products
+                path:'products',
+                element:<Products/>
+              },
+              {
+                //cart
+                path:'cart',
+                element:<Cart/>
+              }
+            ]
+          }
+
+        ]
+      }
+
+    ])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+        <RouterProvider router={routerObj}/>
     </div>
   );
 }
