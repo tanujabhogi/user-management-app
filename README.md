@@ -1,3 +1,9 @@
+# Use 'npm run build'
+To run the application
+
+# Use 'nodemon server'
+To start the server
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
